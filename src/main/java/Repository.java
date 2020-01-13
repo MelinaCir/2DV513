@@ -33,19 +33,18 @@ public class Repository {
     public void fillDatabase() throws SQLException
     {
 
-        final String query = "Insert into Games (ID, Name, Genre, Link, ComposerID, Description)"
-                + "values (?,?,?,?,?,?)";
+        final String query = "Insert into Games (ID, Name, GenreID, ReleaseYear, Description)"
+                + "values (?,?,?,?,?)";
 
         System.out.println(query);
 
         final PreparedStatement preparedStatement = connection.prepareStatement(query);
 
-        preparedStatement.setString(1, "2318");
-        preparedStatement.setString(2, "Zelda");
-        preparedStatement.setString(3, "Adventure");
-        preparedStatement.setString(4, "thislink");
-        preparedStatement.setString(5, "334513");
-        preparedStatement.setString(6, "This game is the best");
+        preparedStatement.setString(1, "10010");
+        preparedStatement.setString(2, "Unravel");
+        preparedStatement.setString(3, "20010");
+        preparedStatement.setString(4, "2016");
+        preparedStatement.setString(5, "Unravel is a puzzle platform video game developed by the Swedish company Coldwood Interactive and published by Electronic Arts.");
 
         preparedStatement.execute();
 
