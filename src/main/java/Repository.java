@@ -1,4 +1,5 @@
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public class Repository {
             Class.forName("com.mysql.jdbc.Driver");
 
             //Replace with address to database
-            final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic?useSSL=false";
+            final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic1.0?useSSL=false";
 
             //Add username and password for current MySQL client
             connection = DriverManager.getConnection(URL, "root", "Dharkan1429z!");
@@ -29,6 +30,69 @@ public class Repository {
         {
             e.printStackTrace();
         }
+    }
+
+    public List<Composer> findComposers()
+    {
+        List<Composer> composersInDB = new ArrayList<>();
+
+        String query = "SELECT * FROM Composers";
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String id = resultSet.getString("ID");
+                String name = resultSet.getString("Name");
+                String description = resultSet.getString("Description");
+
+                Composer composer = new Composer(id, name, description);
+                composersInDB.add(composer);
+            }
+            statement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return composersInDB;
+    }
+
+    public List<Soundtrack> findSoundtracks()
+    {
+        List<Soundtrack> soundtracksInDB = new ArrayList<>();
+
+        String query = "SELECT * FROM Soundtracks";
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String id = resultSet.getString("ID");
+                String link = resultSet.getString("Link");
+                String game = resultSet.getString("GameID");
+                String composer = resultSet.getString("ComposerID");
+
+                Soundtrack soundtrack = new Soundtrack(id, link, game, composer);
+                soundtracksInDB.add(soundtrack);
+            }
+            statement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return soundtracksInDB;
     }
 
     public void fillDatabase() throws SQLException
@@ -41,7 +105,7 @@ public class Repository {
 
         for (final Game game : games)
         {
-            final String query = "Insert into Games (ID, Name, GenreID, ReleaseYear, Description)"
+            final String query = "Insert into Games (ID, Name, Genre, ReleaseYear, Description)"
                     + "values (?,?,?,?,?)";
 
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -117,32 +181,5 @@ public class Repository {
 
     }
 
-    public void findComposers()
-    {
-        String query = "SELECT * FROM Composers";
 
-        Statement statement;
-
-        try
-        {
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(query);
-
-            while (resultSet.next())
-            {
-                String id = resultSet.getString("ID");
-                String name = resultSet.getString("Name");
-                String description = resultSet.getString("Description");
-
-                System.out.format("%s\n", name);
-            }
-            statement.close();
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-        }
-
-
-    }
 }

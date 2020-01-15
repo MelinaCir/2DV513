@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -47,9 +48,31 @@ public class UserMenu {
 
         String composerName = scanner.next();
 
-        System.out.println("You typed: " + composerName);
+        List<Composer> composerList = repository.findComposers();
+        List<Soundtrack> soundtrackList = repository.findSoundtracks();
 
-        repository.findComposers();
+        System.out.format("%-25s %-25s\n", "Composer", "Description");
+
+        for (Composer comp : composerList)
+        {
+            if (comp.getName().contains(composerName))
+            {
+                System.out.format("%-25s %-25s\n", comp.getName(), comp.getDescription());
+                System.out.println("\nSoundtracks composed");
+
+                for (Soundtrack sound : soundtrackList)
+                {
+                    if (sound.getComposerId().contains(comp.getName()))
+                    {
+                        System.out.format("%-25s %-25s\n", sound.getGameId(), sound.getLink());
+                    }
+                }
+            }
+        }
+
+        for (Soundtrack sound : soundtrackList)
+        {
+        }
 
     }
 }
