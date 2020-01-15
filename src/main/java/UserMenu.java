@@ -36,7 +36,7 @@ public class UserMenu {
         }
         else if (choice == 2)
         {
-            System.out.println("You picked two");
+            findSoundtrackByPlatform(scanner);
         }
 
         scanner.close();
@@ -51,12 +51,12 @@ public class UserMenu {
         List<Composer> composerList = repository.findComposers();
         List<Soundtrack> soundtrackList = repository.findSoundtracks();
 
-        System.out.format("%-25s %-25s\n", "Composer", "Description");
 
         for (Composer comp : composerList)
         {
             if (comp.getName().contains(composerName))
             {
+                System.out.format("%-25s %-25s\n", "Composer", "Description");
                 System.out.format("%-25s %-25s\n", comp.getName(), comp.getDescription());
                 System.out.println("\nSoundtracks composed");
 
@@ -69,10 +69,33 @@ public class UserMenu {
                 }
             }
         }
+    }
 
-        for (Soundtrack sound : soundtrackList)
+    public void findSoundtrackByPlatform(Scanner scanner)
+    {
+        System.out.println("Which platform are you looking for? (Type your answer)");
+
+        String platformName = scanner.next();
+
+        List<Platform> platformList = repository.findPlatforms();
+        List<Soundtrack> soundtrackList = repository.findSoundtracks();
+            System.out.println("Soundtracks on platform: ");
+
+        for (Platform platform : platformList)
         {
-        }
 
+            if (platform.getPlatform().contains(platformName))
+            {
+
+                for (Soundtrack sound : soundtrackList)
+                {
+                    if (sound.getGameId().equals(platform.getGameId()))
+                    {
+                        System.out.format("%-25s %-25s\n", sound.getGameId(), sound.getLink());
+
+                    }
+                }
+            }
+        }
     }
 }

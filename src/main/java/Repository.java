@@ -95,6 +95,57 @@ public class Repository {
         return soundtracksInDB;
     }
 
+    public List<Platform> findPlatforms()
+    {
+        List<Platform> platformsInDB = new ArrayList<>();
+
+        String query = "SELECT * FROM Platforms";
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String id = resultSet.getString("ID");
+                String platformName = resultSet.getString("Platform");
+                String game = resultSet.getString("GameID");
+
+                Platform platform = new Platform(id, platformName, game);
+                platformsInDB.add(platform);
+            }
+            statement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return platformsInDB;
+    }
+
+    public void listSoundtracks()
+    {
+        String query = "SELECT COUNT(Link) FROM Soundtracks";
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            String count = resultSet.getString("Link");
+
+            System.out.println(count); //testing
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
     public void fillDatabase() throws SQLException
     {
         final List<Game> games = fileReader.createGames();
