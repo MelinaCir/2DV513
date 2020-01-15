@@ -38,6 +38,22 @@ public class UserMenu {
         {
             findSoundtrackByPlatform(scanner);
         }
+        else if (choice == 3)
+        {
+            findComposerByGame(scanner);
+        }
+        else if (choice == 4)
+        {
+            listSoundtracks();
+        }
+        else if (choice == 5)
+        {
+            sortSoundtracks();
+        }
+        else
+        {
+            System.out.println("Invalid choice!");
+        }
 
         scanner.close();
     }
@@ -79,14 +95,12 @@ public class UserMenu {
 
         List<Platform> platformList = repository.findPlatforms();
         List<Soundtrack> soundtrackList = repository.findSoundtracks();
-            System.out.println("Soundtracks on platform: ");
+        System.out.println("Soundtracks on platform: ");
 
         for (Platform platform : platformList)
         {
-
             if (platform.getPlatform().contains(platformName))
             {
-
                 for (Soundtrack sound : soundtrackList)
                 {
                     if (sound.getGameId().equals(platform.getGameId()))
@@ -97,5 +111,35 @@ public class UserMenu {
                 }
             }
         }
+    }
+
+    public void findComposerByGame(Scanner scanner)
+    {
+        System.out.println("Which game are you looking for? (Type your answer)");
+
+        String game = scanner.next();
+
+        repository.findComposerByGame(game);
+    }
+
+    public void listSoundtracks()
+    {
+        System.out.println("Number of soundtracks currently in database:");
+        repository.listSoundtracks();
+
+        System.out.println("--------------------------------------------");
+        System.out.println("List of soundtracks:");
+
+        List<Soundtrack> soundtrackList = repository.findSoundtracks();
+
+        for (Soundtrack soundtrack : soundtrackList)
+        {
+            System.out.format("%-25s %25s\n", soundtrack.getGameId(), soundtrack.getLink());
+        }
+    }
+
+    public void sortSoundtracks()
+    {
+
     }
 }

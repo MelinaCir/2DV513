@@ -128,7 +128,7 @@ public class Repository {
 
     public void listSoundtracks()
     {
-        String query = "SELECT COUNT(Link) FROM Soundtracks";
+        String query = "SELECT COUNT(Link) AS total FROM Soundtracks";
         Statement statement;
 
         try
@@ -136,14 +136,51 @@ public class Repository {
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
-            String count = resultSet.getString("Link");
-
-            System.out.println(count); //testing
+            while (resultSet.next())
+            {
+                int count = resultSet.getInt("total");
+                System.out.println(count);
+            }
         }
         catch (SQLException e)
         {
             e.printStackTrace();
         }
+    }
+
+    public void findComposerByGame(String gameName)
+    {
+        String query = "SELECT * FROM Games INNER JOIN Soundtracks ON Games.Name = Soundtracks.GameID ";
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String composer = resultSet.getString("ComposerID");
+                String game = resultSet.getString("Name");
+
+                if (game.contains(gameName))
+                {
+                    System.out.println("Composer for game is:");
+                    System.out.println(composer);
+                }
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public void sortSoundtracks()
+    {
+        String query = "";
+
     }
 
     public void fillDatabase() throws SQLException
