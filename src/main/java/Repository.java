@@ -21,7 +21,11 @@ public class Repository {
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
+
+            //Replace with address to database
             final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic?useSSL=false";
+
+            //Add username and password for current MySQL client
             connection = DriverManager.getConnection(URL, "root", "Dharkan1429z!");
         }
         catch (final ClassNotFoundException | SQLException e)
@@ -43,8 +47,6 @@ public class Repository {
             final String query = "Insert into Games (ID, Name, GenreID, ReleaseYear, Description)"
                     + "values (?,?,?,?,?)";
 
-            System.out.println(query);
-
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
 
             preparedStatement.setString(1, game.getId());
@@ -59,9 +61,7 @@ public class Repository {
         for (final Platform platform : platforms)
         {
             final String query = "Insert into Platforms (ID, Platform, GameID)"
-                    + "values (?,?,?,?,?)";
-
-            System.out.println(query);
+                    + "values (?,?,?)";
 
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -75,9 +75,7 @@ public class Repository {
         for (final Genre genre : genres)
         {
             final String query = "Insert into Genres (ID, Name, Info)"
-                    + "values (?,?,?,?,?)";
-
-            System.out.println(query);
+                    + "values (?,?,?)";
 
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -91,9 +89,7 @@ public class Repository {
         for (final Soundtrack soundtrack : soundtracks)
         {
             final String query = "Insert into Soundtracks (ID, Link, GameID, ComposerID)"
-                    + "values (?,?,?,?,?)";
-
-            System.out.println(query);
+                    + "values (?,?,?,?)";
 
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
 
@@ -109,9 +105,7 @@ public class Repository {
         for (final Composer composer : composers)
         {
             final String query = "Insert into Composers (ID, Name, Description)"
-                    + "values (?,?,?,?,?)";
-
-            System.out.println(query);
+                    + "values (?,?,?)";
 
             final PreparedStatement preparedStatement = connection.prepareStatement(query);
 

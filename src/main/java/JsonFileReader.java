@@ -23,7 +23,7 @@ public class JsonFileReader {
         try
         {
             final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
-                    "Gamesdata.json").getFile()));
+                    "Gamedata.json").getFile()));
 
             String line;
             while ((line = reader.readLine()) != null)
@@ -31,7 +31,7 @@ public class JsonFileReader {
                 final Object parse = new JSONParser().parse(line);
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "GD" + gameID;
-                final String name = String.valueOf(jsonObject.get("name"));
+                final String name = String.valueOf(jsonObject.get("game"));
                 final String genre = String.valueOf(jsonObject.get("genre"));
                 final String releaseYear = String.valueOf(jsonObject.get("release"));
                 final String description = String.valueOf(jsonObject.get("description"));
@@ -58,7 +58,7 @@ public class JsonFileReader {
         try
         {
             final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
-                    "Gamesdata.json").getFile()));
+                    "Gamedata.json").getFile()));
 
             String line;
             while ((line = reader.readLine()) != null)
@@ -67,7 +67,7 @@ public class JsonFileReader {
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "Pl" + iD;
                 final String platformName = String.valueOf(jsonObject.get("platform"));
-                final String gameID = String.valueOf(jsonObject.get("name"));
+                final String gameID = String.valueOf(jsonObject.get("game"));
 
 
                 final Platform platform = new Platform(id, platformName, gameID);
@@ -91,7 +91,7 @@ public class JsonFileReader {
         try
         {
             final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
-                    "Gamesdata.json").getFile()));
+                    "Composerdata.json").getFile()));
 
             String line;
             while ((line = reader.readLine()) != null)
@@ -99,8 +99,8 @@ public class JsonFileReader {
                 final Object parse = new JSONParser().parse(line);
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "Co" + iD;
-                final String composerName = String.valueOf(jsonObject.get("composer"));
-                final String description = "This composer is...";
+                final String composerName = String.valueOf(jsonObject.get("name"));
+                final String description = String.valueOf(jsonObject.get("description"));
 
 
                 final Composer composer = new Composer(id, composerName, description);
@@ -132,7 +132,7 @@ public class JsonFileReader {
                 final Object parse = new JSONParser().parse(line);
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "Pl" + iD;
-                final String genreName = String.valueOf(jsonObject.get("name"));
+                final String genreName = String.valueOf(jsonObject.get("genre"));
                 final String info = String.valueOf(jsonObject.get("info"));
 
 
@@ -165,8 +165,8 @@ public class JsonFileReader {
                 final Object parse = new JSONParser().parse(line);
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "Pl" + iD;
-                final String link = String.valueOf(jsonObject.get("link"));
-                final String gameId = String.valueOf(jsonObject.get("name"));
+                final String link = String.valueOf(jsonObject.get("soundtrack_link"));
+                final String gameId = String.valueOf(jsonObject.get("game"));
                 final String composerId = String.valueOf(jsonObject.get("composer"));
 
 
