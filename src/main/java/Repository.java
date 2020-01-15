@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.List;
 
 /**
@@ -117,6 +114,35 @@ public class Repository {
         }
 
         connection.close();
+
+    }
+
+    public void findComposers()
+    {
+        String query = "SELECT * FROM Composers";
+
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String id = resultSet.getString("ID");
+                String name = resultSet.getString("Name");
+                String description = resultSet.getString("Description");
+
+                System.out.format("%s\n", name);
+            }
+            statement.close();
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
 
     }
 }
