@@ -34,6 +34,9 @@ public class Repository {
     {
         final List<Game> games = fileReader.createGames();
         final List<Platform> platforms = fileReader.createPlatforms();
+        final List<Genre> genres = fileReader.createGenres();
+        final List<Soundtrack> soundtracks = fileReader.createSoundtracks();
+        final List<Composer> composers = fileReader.createComposers();
 
         for (final Game game : games)
         {
@@ -65,6 +68,56 @@ public class Repository {
             preparedStatement.setString(1, platform.getId());
             preparedStatement.setString(2, platform.getPlatform());
             preparedStatement.setString(3, platform.getGameId());
+
+            preparedStatement.execute();
+        }
+
+        for (final Genre genre : genres)
+        {
+            final String query = "Insert into Genres (ID, Name, Info)"
+                    + "values (?,?,?,?,?)";
+
+            System.out.println(query);
+
+            final PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, genre.getId());
+            preparedStatement.setString(2, genre.getName());
+            preparedStatement.setString(3, genre.getInfo());
+
+            preparedStatement.execute();
+        }
+
+        for (final Soundtrack soundtrack : soundtracks)
+        {
+            final String query = "Insert into Soundtracks (ID, Link, GameID, ComposerID)"
+                    + "values (?,?,?,?,?)";
+
+            System.out.println(query);
+
+            final PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, soundtrack.getId());
+            preparedStatement.setString(2, soundtrack.getLink());
+            preparedStatement.setString(3, soundtrack.getGameId());
+            preparedStatement.setString(4, soundtrack.getComposerId());
+
+
+            preparedStatement.execute();
+        }
+
+        for (final Composer composer : composers)
+        {
+            final String query = "Insert into Composers (ID, Name, Description)"
+                    + "values (?,?,?,?,?)";
+
+            System.out.println(query);
+
+            final PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, composer.getId());
+            preparedStatement.setString(2, composer.getName());
+            preparedStatement.setString(3, composer.getDescription());
 
             preparedStatement.execute();
         }

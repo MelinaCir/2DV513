@@ -165,12 +165,12 @@ public class JsonFileReader {
                 final Object parse = new JSONParser().parse(line);
                 final JSONObject jsonObject = (JSONObject) parse;
                 final String id = "Pl" + iD;
-                final String name = jsonObject.get("name") + " Soundtrack";
                 final String link = String.valueOf(jsonObject.get("link"));
                 final String gameId = String.valueOf(jsonObject.get("name"));
+                final String composerId = String.valueOf(jsonObject.get("composer"));
 
 
-                final Soundtrack soundtrack = new Soundtrack(id, name, link, gameId);
+                final Soundtrack soundtrack = new Soundtrack(id, link, gameId, composerId);
                 soundtracks.add(soundtrack);
                 iD++;
             }
