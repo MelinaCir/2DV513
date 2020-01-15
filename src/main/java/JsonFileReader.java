@@ -8,6 +8,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class JsonFileReader reads information from the given file and creates the objects for the database.
+ *
+ * @author Melina Cirverius & Liejsa Ericsson
+ *
+ */
 public class JsonFileReader {
 
     public List<Game> createGames()

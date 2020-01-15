@@ -1,24 +1,21 @@
 
 /**
- * Class Game creates a instance of a game object.
+ * Class Composer creates a instance of a composer object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
  *
  */
-public class Game {
+public class Composer {
+
     private final String id;
     private final String name;
-    private final String genreId;
-    private final String releaseYear;
     private final String description;
 
 
-    public Game(String id, String name, String genreId, String releaseYear, String description)
+    public Composer(String id, String name, String description)
     {
         this.id = id;
         this.name = name;
-        this.genreId = genreId;
-        this.releaseYear = releaseYear;
         this.description = description;
 
     }
@@ -33,16 +30,6 @@ public class Game {
         return name;
     }
 
-    public String getGenreId()
-    {
-        return genreId;
-    }
-
-    public String getReleaseYear()
-    {
-        return releaseYear;
-    }
-
     public String getDescription()
     {
         return description;
@@ -52,11 +39,9 @@ public class Game {
     @Override
     public String toString()
     {
-        return "Game{" +
+        return "Composer{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", genreId='" + genreId + '\'' +
-                ", releaseYear='" + releaseYear + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }

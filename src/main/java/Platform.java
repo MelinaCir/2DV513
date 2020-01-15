@@ -1,3 +1,9 @@
+/**
+ * Class Platform creates a instance of a platform object.
+ *
+ * @author Melina Cirverius & Liejsa Ericsson
+ *
+ */
 public class Platform {
 
     private final String id;
@@ -32,7 +38,7 @@ public class Platform {
     @Override
     public String toString()
     {
-        return "Game{" +
+        return "Platform{" +
                 "id='" + id + '\'' +
                 ", platform='" + platform + '\'' +
                 ", gameId='" + gameId + '\'' +

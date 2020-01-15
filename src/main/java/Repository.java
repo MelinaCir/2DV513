@@ -3,7 +3,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
 /**
  * Class Repository creates the connection to the database and fills it with the given information.
  *
@@ -21,8 +20,6 @@ public class Repository {
             Class.forName("com.mysql.jdbc.Driver");
             final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic?useSSL=false";
             connection = DriverManager.getConnection(URL, "root", "Dharkan1429z!");
-
-            System.out.println("hej");
         }
         catch (final ClassNotFoundException | SQLException e)
         {
