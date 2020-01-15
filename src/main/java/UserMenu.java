@@ -140,6 +140,7 @@ public class UserMenu {
 
     public void sortSoundtracks()
     {
-
+        System.out.format("%-25s %-25s %-25s\n", "Game", "Release year", "Soundtrack link");
+        repository.sortSoundtracks();
     }
 }

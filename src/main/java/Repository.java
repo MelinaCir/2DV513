@@ -21,7 +21,7 @@ public class Repository {
             Class.forName("com.mysql.jdbc.Driver");
 
             //Replace with address to database
-            final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic1.0?useSSL=false";
+            final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic1.1?useSSL=false";
 
             //Add username and password for current MySQL client
             connection = DriverManager.getConnection(URL, "root", "Dharkan1429z!");
@@ -141,6 +141,7 @@ public class Repository {
                 int count = resultSet.getInt("total");
                 System.out.println(count);
             }
+            statement.close();
         }
         catch (SQLException e)
         {
@@ -168,7 +169,9 @@ public class Repository {
                     System.out.println("Composer for game is:");
                     System.out.println(composer);
                 }
+
             }
+            statement.close();
 
         }
         catch (SQLException e)
@@ -179,7 +182,34 @@ public class Repository {
 
     public void sortSoundtracks()
     {
-        String query = "";
+        String query = "SELECT Games.ID, Games.Name, Games.ReleaseYear, Soundtracks.GameID, Soundtracks.Link \n" +
+                "FROM Games\n" +
+                "INNER JOIN Soundtracks\n" +
+                "ON Games.Name = Soundtracks.GameID\n" +
+                "ORDER BY Games.ReleaseYear ASC;";
+
+        Statement statement;
+
+        try
+        {
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next())
+            {
+                String gameName = resultSet.getString("Name");
+                String releaseYear = resultSet.getString("ReleaseYear");
+                String link = resultSet.getString("Link");
+
+                System.out.format("%-25s %-25s %-25s\n", gameName, releaseYear, link);
+            }
+            statement.close();
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
