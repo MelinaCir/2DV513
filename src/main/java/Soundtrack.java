@@ -3,7 +3,6 @@
  * Class Soundtrack creates a instance of a soundtrack object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class Soundtrack {
 

@@ -4,7 +4,6 @@ import java.sql.SQLException;
  * This is the starting point of the application.
  *
  * @author Melina Cirverius, Liejsa Ericsson
- *
  */
 public class Main {
 

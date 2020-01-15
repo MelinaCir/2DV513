@@ -12,7 +12,6 @@ import java.util.List;
  * Class JsonFileReader reads information from the given file and creates the objects for the database.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class JsonFileReader {
 
@@ -83,4 +82,105 @@ public class JsonFileReader {
 
         return platforms;
     }
+
+    public List<Composer> createComposers()
+    {
+        final List<Composer> composers = new ArrayList<>();
+        int iD = 3000;
+
+        try
+        {
+            final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
+                    "Gamesdata.json").getFile()));
+
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                final Object parse = new JSONParser().parse(line);
+                final JSONObject jsonObject = (JSONObject) parse;
+                final String id = "Co" + iD;
+                final String composerName = String.valueOf(jsonObject.get("composer"));
+                final String description = "This composer is...";
+
+
+                final Composer composer = new Composer(id, composerName, description);
+                composers.add(composer);
+                iD++;
+            }
+        }
+        catch (final IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return composers;
+    }
+
+    public List<Genre> createGenres()
+    {
+        final List<Genre> genres = new ArrayList<>();
+        int iD = 4000;
+
+        try
+        {
+            final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
+                    "Genredata.json").getFile()));
+
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                final Object parse = new JSONParser().parse(line);
+                final JSONObject jsonObject = (JSONObject) parse;
+                final String id = "Pl" + iD;
+                final String genreName = String.valueOf(jsonObject.get("name"));
+                final String info = String.valueOf(jsonObject.get("info"));
+
+
+                final Genre genre = new Genre(id, genreName, info);
+                genres.add(genre);
+                iD++;
+            }
+        }
+        catch (final IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return genres;
+    }
+
+    public List<Soundtrack> createSoundtracks()
+    {
+        final List<Soundtrack> soundtracks = new ArrayList<>();
+        int iD = 5000;
+
+        try
+        {
+            final BufferedReader reader = new BufferedReader(new FileReader(getClass().getClassLoader().getResource(
+                    "Gamedata.json").getFile()));
+
+            String line;
+            while ((line = reader.readLine()) != null)
+            {
+                final Object parse = new JSONParser().parse(line);
+                final JSONObject jsonObject = (JSONObject) parse;
+                final String id = "Pl" + iD;
+                final String name = jsonObject.get("name") + " Soundtrack";
+                final String link = String.valueOf(jsonObject.get("link"));
+                final String gameId = String.valueOf(jsonObject.get("name"));
+
+
+                final Soundtrack soundtrack = new Soundtrack(id, name, link, gameId);
+                soundtracks.add(soundtrack);
+                iD++;
+            }
+        }
+        catch (final IOException | ParseException e)
+        {
+            e.printStackTrace();
+        }
+
+        return soundtracks;
+    }
+
 }

@@ -3,7 +3,6 @@
  * Class Composer creates a instance of a composer object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class Composer {
 

@@ -2,7 +2,6 @@
  * Class Platform creates a instance of a platform object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class Platform {
 

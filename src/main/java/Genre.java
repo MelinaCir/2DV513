@@ -3,7 +3,6 @@
  * Class Genre creates a instance of a genre object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class Genre {
 

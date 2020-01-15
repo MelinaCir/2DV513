@@ -3,7 +3,6 @@
  * Class Game creates a instance of a game object.
  *
  * @author Melina Cirverius & Liejsa Ericsson
- *
  */
 public class Game {
     private final String id;
