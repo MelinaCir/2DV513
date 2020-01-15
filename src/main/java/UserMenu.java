@@ -17,6 +17,7 @@ public class UserMenu {
 
     public void createMenu()
     {
+        System.out.println("--------------------------------------");
         System.out.println("Welcome to the Game Music Database 1.0");
         System.out.println("--------------------------------------");
         System.out.println("What do you want to do? (Choose a number)" +

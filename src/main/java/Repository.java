@@ -24,7 +24,7 @@ public class Repository {
             final String URL = "jdbc:mysql://127.0.0.1:3306/GameMusic1.1?useSSL=false";
 
             //Add username and password for current MySQL client
-            connection = DriverManager.getConnection(URL, "root", "Dharkan1429z!");
+            connection = DriverManager.getConnection(URL, "root", "XXXXX!");
         }
         catch (final ClassNotFoundException | SQLException e)
         {
